@@ -110,31 +110,31 @@
 
                                             <label for="firstName"><strong> First name </strong></label>
                                             <input type="text" name="firstName" class="form-control" id="firstName"
-                                                   placeholder="First name">
+                                                   placeholder="First name" required>
 
                                             <br/>
 
                                             <label for="lastName"><strong> Last name </strong></label>
                                             <input type="text" name="lastName" class="form-control" id="lastName"
-                                                   placeholder="Last name">
+                                                   placeholder="Last name" required>
 
                                             <br/>
 
                                             <label for="age"><strong> Age </strong></label>
                                             <input type="number" name="age" class="form-control" id="age"
-                                                   placeholder="Age">
+                                                   placeholder="Age" value="18" min="18" required>
 
                                             <br/>
 
                                             <label for="email"><strong> Email </strong></label>
                                             <input type="email" name="username" class="form-control" id="email"
-                                                   placeholder="Email">
+                                                   placeholder="Email" required>
 
                                             <br/>
 
                                             <label for="password"><strong> Password </strong></label>
                                             <input type="password" name="password" class="form-control" id="password"
-                                                   placeholder="Password">
+                                                   placeholder="Password" required>
 
                                             <br/>
 
@@ -189,25 +189,25 @@
                             name </strong></label>
                         <input name="firstName" th:type="text"
                                class="form-control" id="editFirstName"
-                               placeholder="First name">
+                               placeholder="First name" required>
                         <br/>
 
                         <label for="editLastName"><strong> Last
                             name </strong></label>
                         <input name="lastName" th:type="text"
                                class="form-control" id="editLastName"
-                               placeholder="Last name">
+                               placeholder="Last name" required>
 
                         <br/>
 
                         <label for="editAge"><strong> Age </strong></label>
                         <input name="age" th:type="number"
-                               class="form-control" id="editAge" placeholder="Age">
+                               class="form-control" id="editAge" placeholder="Age" min="18" required>
                         <br/>
 
                         <label for="editEmail"><strong>Email</strong></label>
                         <input name="username" th:type="email"
-                               class="form-control" id="editEmail"/>
+                               class="form-control" id="editEmail" required/>
 
                         <br/>
 
@@ -329,6 +329,26 @@
     </div>
 </div>
 
+<!--Модальное окно для ошибок-->
+<div class="modal fade" id="errorModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="formErrorMessage">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body alert alert-block alert-danger" id="errorBody">
+                    <a>Error!</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeErrorTab">Ok
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

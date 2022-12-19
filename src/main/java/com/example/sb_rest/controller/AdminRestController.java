@@ -1,9 +1,11 @@
 package com.example.sb_rest.controller;
 
 
+import com.example.sb_rest.exceptionHandler.UserWhithSuchUsernameExist;
 import com.example.sb_rest.model.User;
 import com.example.sb_rest.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,14 +50,22 @@ public class AdminRestController {
 
     @PostMapping("/new")
     public ResponseEntity<HttpStatus> addUser(@RequestBody User user) {
-        userService.addUser(user);
-        return new ResponseEntity<>(HttpStatus.OK);
+       try {
+           userService.addUser(user);
+           return new ResponseEntity<>(HttpStatus.OK);
+       } catch (DataIntegrityViolationException e) {
+           throw new UserWhithSuchUsernameExist("Пользователь с таким именем существует");
+       }
     }
 
     @PutMapping("/users/{id}")
     public ResponseEntity<HttpStatus> editUser(@RequestBody User user, @PathVariable("id") Long id) {
-        userService.editUser(id, user);
-        return ResponseEntity.ok(HttpStatus.OK);
+        try {
+            userService.editUser(id, user);
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (DataIntegrityViolationException e) {
+            throw new UserWhithSuchUsernameExist("Пользователь с таким именем существует");
+        }
     }
 
     @DeleteMapping("/users/{id}")

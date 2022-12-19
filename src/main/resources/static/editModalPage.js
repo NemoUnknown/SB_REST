@@ -49,10 +49,18 @@ async function editUser() {
         })
     }
 
-    await fetch(urlEdit, method).then(() => {
+    const response = await fetch(urlEdit, method);
+    if (response.ok) {
         $('#editCloseBtn').click();
         getMainPage();
-    })
+    } else {
+    let body = await response.json();
+    getErrorMessage(body, form_ed);
+}
 }
 
-
+function getErrorMessage(message, form) {
+    let errorBody = document.getElementById('errorBody')
+    errorBody.innerHTML = message.info
+    $('#errorModal').modal('toggle')
+}
